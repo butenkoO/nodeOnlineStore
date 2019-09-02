@@ -1,25 +1,19 @@
 const express = require('express');
 const app = express();
-
 const MongoClient = require("mongodb").MongoClient;
 const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
-let dbClient;
 
 mongoClient.connect(function(err, client){
     if(err) return console.log(err);
-    dbClient = client;
-    app.locals.collection = client.db("store_online").collection("goods");
+    db = client.db("store_online");
     app.listen(3000, function(){
         console.log("all right. Server on 3000 port!" + Date());
     });
 });
-
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
-
 app.get('/', function (req, res) {
-    const collection = req.app.locals.collection;
-    collection.find({}).toArray(function(err, users){
+    db.collection("goods").find({}).toArray(function(err, users){
         if(err) return console.log(err);
         let tovar={};
         for(let i = 0; i<users.length;i++){
@@ -29,11 +23,23 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/:id', function (req, res) {
-    const collection = req.app.locals.collection;
-    collection.find({_id:req.query.id}).toArray(function(err, users){
+app.get('/category/:id', function (req, res) {
+    db.collection('goods').find({class:req.params.id}).toArray(function(err, goods){
         if(err) return console.log(err);
-        console.log(users);
-        res.render('good', {goods:users});
+        res.render('main',{good:goods});
     });
     });
+
+app.get('/:id', function (req, res) {
+    db.collection('goods').find({_id:req.query.id}).toArray(function(err, goods){
+        if(err) return console.log(err);
+        res.render('good', {goods:goods});
+    });
+    });
+
+app.post('/get-category-list', function(req, res){
+    db.collection('category').find({}).toArray(function(err, category){
+        if(err) return console.log(err);
+        res.json(category);
+    });
+});
