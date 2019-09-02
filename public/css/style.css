@@ -1,0 +1,22 @@
+body{
+    background:linear-gradient(180deg, #8dd89d, #a4ae12)
+}
+.footer{
+    background-color: black;
+    color: antiquewhite;
+    text-align: center;
+}
+.deadpool{
+    position:relative;
+    left: 45%;
+}
+.card-image{
+    height: 300px;
+}
+.site-header{
+    width: 100%;
+    background-color: #a4ae12;
+}
+.goods-big-image{
+    width: 100%;
+}

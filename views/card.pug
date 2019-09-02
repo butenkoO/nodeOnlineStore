@@ -1,0 +1,15 @@
+div(class='col col-md-4')
+    div(class='card')
+        a(href="good?id="+val['_id'])
+            h3(class='card-title text-center') #{val['name']}
+            img(
+                src=''+val['image']
+                class='card-image text-center'
+            )
+            p(class='text-center') #{val['cost']} грн
+            ul(class='card-actions')
+                li
+                    button(
+                        data_goods_id = val['_id']
+                        class = 'button add-to-cart button-primary'
+                    ) to cart

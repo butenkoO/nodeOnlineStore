@@ -1,0 +1,28 @@
+include header
+
+div(class='wrap')
+    div(class='content')
+        header(class='site-header')
+            include site-header
+
+        div(class='container')
+            div(class='row')
+                div(class='col col-md-12')
+                    h2(class='panel-title') #{goods[0]['name']}
+                div(class='col col-md-4')
+                    img(
+                        src=""+goods[0]['image'],
+                        class="goods-big-image",
+                        alt="goods photo",
+                        )
+                div(class='col col-md-8')
+                    p #{goods[0]['about']}
+                    span(class='success') Ціна: #{goods[0]['cost']} грн
+                    button(
+                        type="button"
+                        class="btn btn-danger add-to-cart"
+                        data_goods_id=''+goods[0][_id]
+                    ) До корзини
+
+        include nav
+include footer
