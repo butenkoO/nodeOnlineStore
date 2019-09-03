@@ -6,13 +6,7 @@ body{
     color: antiquewhite;
     text-align: center;
 }
-.deadpool{
-    position:relative;
-    left: 45%;
-}
-.card-image{
-    height: 300px;
-}
+
 .site-header{
     width: 100%;
     background-color: #a4ae12;
@@ -21,5 +15,46 @@ body{
     width: 100%;
 }
 .panel-title{
-    color: crimson;
+    color: rgb(212, 24, 62);
+}
+/* +++++++++++++ */
+.card{
+    border: 1px solid #fefefe;
+}
+
+.card-image{
+display: block;
+margin: 20px auto;
+max-width: 90%;
+min-height: 150px;
+}
+/* ?++++++++++++++++ */
+
+.site-nav{
+    background-color: black;
+    width: 300px;
+    min-height: 100vh;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    z-index: 1000;
+    padding: 10px;
+    transition: all ease 1s;
+    color: #fefefe;
+}
+.close-buton-div{
+    text-align: right;
+}
+.show-nav{
+    position: relative;
+}
+ul.category-list{
+    list-style-type: disc;
+}
+ul.category-list a{
+    color: #a4ae12;
+    text-decoration: none;
+}
+.close-nav{
+    left: 280px;
 }

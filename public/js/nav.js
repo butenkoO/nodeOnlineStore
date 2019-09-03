@@ -1,3 +1,13 @@
+document.querySelector('.close-nav').onclick = closeNav;
+document.querySelector('.show-nav').onclick = showNav;
+
+function closeNav(){
+    document.querySelector('.site-nav').style.left = '-300px';
+}
+function showNav(){
+    document.querySelector('.site-nav').style.left = '0px';
+}
+
 function getCategoryList(){
     fetch('/get-category-list',
     {

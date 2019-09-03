@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
-const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true });
+const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true,
+useUnifiedTopology: true });
 
 mongoClient.connect(function(err, client){
     if(err) return console.log(err);

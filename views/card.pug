@@ -7,9 +7,9 @@ div(class='col col-md-4')
                 class='card-image text-center'
             )
             p(class='text-center') #{val['cost']} грн
-            ul(class='card-actions')
-                li
-                    button(
-                        data_goods_id = val['_id']
-                        class = 'button add-to-cart button-primary'
-                    ) to cart
+        ul(class='card-actions')
+            li
+                button(
+                    data-goods_id = val['_id']
+                    class = 'btn btn-danger button add-to-cart button-primary'
+                ) to cart
