@@ -13,4 +13,20 @@ function addToCart(){
         cart[goodsId] = 1;
     }
     console.log(cart);
+    ajaxGetGoodInfo();
+}
+
+function ajaxGetGoodInfo(){
+    fetch('/get-goods-info',{
+        method: 'POST',
+        body: JSON.stringify({key:Object.keys(cart)}),
+        headers:{
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json'
+        }
+    }).then(function(response){
+
+    }).then(function(body){
+        console.log(body);
+    });
 }
