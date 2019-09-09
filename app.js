@@ -26,10 +26,25 @@ app.get('/', function (req, res) {
 });
 
 app.get('/category/:id', function (req, res) {
-    db.collection('goods').find({class:req.params.id}).toArray(function(err, goods){
-        if(err) return console.log(err);
-        res.render('main',{good:goods});
+let categ = new Promise(function(resolve, reject){
+    db.collection('category').find({class:req.params.id}).toArray(function(err, res){
+        if(err) reject(err);
+        resolve(res);
     });
+});
+let categGoods = new Promise(function(resolve, reject){
+    db.collection('goods').find({class:req.params.id}).toArray(function(err, result){
+        if(err) return reject(err);
+        resolve(result);
+    });
+});
+Promise.all([categ, categGoods]).then(function(value){
+    res.render('category', {categ: value[0], goods:value[1]});
+});
+    });
+
+app.get('/order', function (req, res) {
+    res.render('order');
     });
 
 app.get('/:id', function (req, res) {
@@ -47,9 +62,16 @@ app.post('/get-category-list', function(req, res){
 });
 
 app.post('/get-goods-info', function(req, res){
-    db.collection('goods').find({_id:{$in:req.body.key}}).toArray(function(err, result){
-        if(err) return console.log(err);
-        console.log(result);
-        res.json(result);
-    });
+    if(req.body.key.length != 0){
+        db.collection('goods').find({_id:{$in:req.body.key}}).toArray(function(err, result){
+            if(err) return console.log(err);
+            let goods = {};
+            for(let i=0; i<result.length; i++){
+                goods[result[i]['_id']] = result[i];
+            }
+            res.json(goods);
+        });
+    }else{
+        res.send('0');
+    }
 });

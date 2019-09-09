@@ -58,3 +58,7 @@ ul.category-list a{
 .close-nav{
     left: 280px;
 }
+#cart-nav{
+    overflow: auto;
+    max-height: 50vh;
+}
