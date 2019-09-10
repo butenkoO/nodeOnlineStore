@@ -14,7 +14,15 @@ mongoClient.connect(function(err, client){
 });
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
+
 app.get('/', function (req, res) {
+    db.collection("goods").find({top:'1'}).toArray(function(err, top){
+        if(err) return console.log(err);
+        res.render('index', {good:top});
+    });
+});
+
+app.get('/qwe', function (req, res) {
     db.collection("goods").find({}).toArray(function(err, users){
         if(err) return console.log(err);
         let tovar={};

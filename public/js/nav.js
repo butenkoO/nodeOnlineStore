@@ -1,11 +1,17 @@
-document.querySelector('.close-nav').onclick = closeNav;
-document.querySelector('.show-nav').onclick = showNav;
+document.getElementById("close-nav").onclick = showNav;
 
-function closeNav(){
-    document.querySelector('.site-nav').style.left = '-300px';
-}
 function showNav(){
-    document.querySelector('.site-nav').style.left = '0px';
+    if ( document.getElementById("close-nav").classList.contains('close-nav') ){
+        document.querySelector('.site-nav').style.left = '-300px';
+        document.querySelector('.close-button-div').style.left = '0px';
+        document.getElementById("close-nav").classList.remove('close-nav');
+        document.getElementById("close-nav").classList.add('show-nav');
+    }else{
+        document.querySelector('.site-nav').style.left = '0px';
+        document.querySelector('.close-button-div').style.left = '300px';
+        document.getElementById("close-nav").classList.remove('show-nav');
+        document.getElementById("close-nav").classList.add('close-nav');
+    }
 }
 
 function getCategoryList(){
@@ -17,7 +23,6 @@ function getCategoryList(){
         return response.text();
         }
     ).then(function(body){
-
         showCategoryList(JSON.parse(body));
     });
 }
