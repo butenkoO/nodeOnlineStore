@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/qwe', function (req, res) {
+app.get('/all', function (req, res) {
     db.collection("goods").find({}).toArray(function(err, users){
         if(err) return console.log(err);
         let tovar={};

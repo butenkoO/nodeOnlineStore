@@ -18,11 +18,12 @@ div(class='wrap')
                 div(class='col col-md-8')
                     p #{goods[0]['about']}
                     span(class='success') Ціна: #{goods[0]['cost']} грн
-                    button(
-                        type="button"
-                        class="btn btn-danger add-to-cart"
-                        data-goods_id = goods[0]['_id']
-                    ) До корзини
+                    div
+                        button(
+                            type="button"
+                            class="btn btn-danger add-to-cart"
+                            data-goods_id = goods[0]['_id']
+                        ) До корзини
 
         include nav
 include footer

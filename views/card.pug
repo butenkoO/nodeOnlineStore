@@ -1,15 +1,14 @@
 div(class='col col-md-3')
     div(class='card')
         a(href="/goods?id="+val['_id'])
-            h3(class='card-title text-center') #{val['name']}
+            h4(class='card-title text-center') #{val['name']}
             img(
                 src='http://127.0.0.1:3000/'+val['image']
                 class='card-image text-center'
             )
             p(class='text-center') #{val['cost']} грн
-        ul(class='card-actions')
-            li
-                button(
-                    data-goods_id = val['_id']
-                    class = 'btn btn-danger button add-to-cart button-primary'
+        div(class='card-actions')
+            button(
+                data-goods_id = val['_id']
+                class = 'btn btn-danger button add-to-cart button-primary'
                 ) to cart

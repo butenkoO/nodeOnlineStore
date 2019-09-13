@@ -5,11 +5,26 @@ div(class='wrap')
         header(class='site-header')
             include site-header
             include carousel
+        div(class="advantage")
+            div(class="frsadv col-md-3")
+                img(src="image/logos/shirt.png")
+                p Великий асортимент, який задовільнить найвибагливішого клієнта
+            div(class="secadv col-md-3")
+                img(src="image/logos/money.png")
+                p Найкращі ціни та регулярні акційні пропозиції
+            div(class="trdadv col-md-3")
+                img(src="image/logos/king.png")
+                p Відмінне обслуговування та індивідуальний підхід до кожного
         div(class='container')
             div(class='row')
                 div(class='col col-md-12')
+                    main(class="insmain")
+                        p GOGOL'  SHOP ● STREETWEAR - магазин молодіжного одягу та аксесуарів найкращих українських брендів.</b></p>
+                        p(class="red") Хіт продаж
                 each val, index in good
                     include card.pug
+        div(class="textAbout")
+            p Будьте стильними та мобільними. Живіть яскраво та динамічно. Обирайте якісне та українське. З придбаними у нас речами ви легко досягатиме своїх маленьких і великих цілей, покорятимете вершини та зачаровуватимете навколишніх. Вони не обмежують, не сковують рухів, а, навпаки, дарують бажаний комфорт. Ще одним приємним бонусом для наших клієнтів стане те, що ми підтримуємо вітчизняного виробника та пропонуємо продукцію виключно українських відомих брендів.
 
         include nav
 include footer
