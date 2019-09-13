@@ -83,3 +83,20 @@ app.post('/get-goods-info', function(req, res){
         res.send('0');
     }
 });
+
+app.post('/finish-order', function(req, res){
+    if(req.body.key.length !=0){
+    let key = Object.keys(req.body.key);
+    db.collection('goods').find({_id:{$in:key}}).toArray(function(err, result){
+        if(err) return console.log(err);
+        console.log(result);
+        sendMail(req.body, result);
+        res.send('1');
+    });
+    }
+});
+
+function sendMail(data,result){
+    console.log(data);
+    console.log(result);
+}

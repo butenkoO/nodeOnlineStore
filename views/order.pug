@@ -7,11 +7,39 @@ div(class='wrap')
 
         div(class='container')
             div(class='row')
-                div(class='col col-md-7')
+                div(class='col col-md-12')
                     h3(class='cart-header') Cart
                     div(id='cart-nav')
-
-
-
-
+                div(class='col col-md-12')
+                    h3 Create order
+                div(class='col col-md-6')
+                    form#lite-shop-order(action="")
+                            div(class='form-control')
+                                label(for="username") Імя
+                                input(
+                                    type="text",
+                                    id="username",
+                                    placeholder="Enter your name"
+                                    )
+                            div(class='form-control')
+                                label(for="phone") Телефон
+                                input(
+                                    type="text",
+                                    id="phone",
+                                    placeholder="+380"
+                                    )
+                            div(class='form-control')
+                                label(for="email") Email
+                                input(
+                                    type="text",
+                                    id="email",
+                                    placeholder="@mail"
+                                    )
+                            div(class='form-control text-right')
+                                button(
+                                    type="submit",
+                                    class="button-primary"
+                                    ) Відправити замовлення
+        include nav
 include footer
+script(src="js/order.js")
