@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const nodemailer = require('nodemailer');
 const MongoClient = require("mongodb").MongoClient;
 const mongoClient = new MongoClient("mongodb://localhost:27017/", { useNewUrlParser: true,
 useUnifiedTopology: true });
@@ -89,14 +90,52 @@ app.post('/finish-order', function(req, res){
     let key = Object.keys(req.body.key);
     db.collection('goods').find({_id:{$in:key}}).toArray(function(err, result){
         if(err) return console.log(err);
-        console.log(result);
         sendMail(req.body, result);
         res.send('1');
     });
     }
 });
 
-function sendMail(data,result){
-    console.log(data);
-    console.log(result);
+ async function sendMail(data,result){
+    //  console.log(result);
+     console.log(data);
+    let res = '<h2>Order in Gogol shop</h2>';
+    let total = 0;
+    for(let i=0; i<result.length;i++){
+        res += `<p>${result[i]['name']}-${data.key[result[i]['_id']]}шт. - ${result[i]['cost'] * data.key[result[i]['_id']]} грн </p>`;
+        total += result[i]['cost']* data.key[result[i]['_id']];
+    }
+    res += `<hr>`;
+    res += `Всього ${total} грн.`;
+    res += `<hr>Імя: ${data.username}`;
+    res += `<hr>Телефон: ${data.phone}`;
+    res += `<hr>Електронна пошта: ${data.email}`;
+    console.log(res);
+
+    let transporter = await nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'webbuttest@gmail.com',
+            pass: '446352qwedsazxc'
+        }
+    });
+
+    let mailOptions = {
+        from: 'webbuttest@gmail.com',
+        to: 'andriybutenko94@gmail.com',
+        subject: 'hello',
+        text: res,
+        html: res
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+        } else {
+            console.log('mail sent: ' + info.response);
+        }
+    });
+
+
 }
